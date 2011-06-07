@@ -50,5 +50,8 @@ class Boot {
     LiftRules.dispatch.append(Arest) // stateful -- associated with a servlet container session
     LiftRules.statelessDispatchTable.append(Arest) // stateless -- no session created
 
+    LiftRules.dispatch.append(AsimpleRest) // stateful -- associated with a servlet container session
+    LiftRules.statelessDispatchTable.append(AsimpleRest) // stateless -- no session created
+
   }
 }
