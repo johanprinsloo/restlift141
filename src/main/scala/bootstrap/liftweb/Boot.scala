@@ -3,12 +3,10 @@ package bootstrap.liftweb
 import net.liftweb._
 import util._
 import Helpers._
-
 import common._
 import http._
 import sitemap._
 import Loc._
-
 import code.rest._
 
 /**
@@ -52,6 +50,9 @@ class Boot {
 
     LiftRules.dispatch.append(AsimpleRest) // stateful -- associated with a servlet container session
     LiftRules.statelessDispatchTable.append(AsimpleRest) // stateless -- no session created
-
+    
+    LiftRules.dispatch.append(XmlRest.dispatch)
+    LiftRules.statelessDispatchTable.append(XmlRest.dispatch) // stateless -- no session created
+    
   }
 }
