@@ -29,8 +29,8 @@ object XmlRest extends XMLApiHelper with Logger {
     case Req(List("api", "q1"), _, GetRequest) => { () => JsonResponse(JString(" api => q1")) }
     case Req(List("api", "q1", id), _, GetRequest) => { () => XmlResponse(<b> api q1 { id }</b>) }
     case Req(List("api", "q1", id, "cond1"), _, GetRequest) => { () => XmlResponse(<b> api q1 { id } cond1</b>) }
-    case Req(List("api", "q1", id, "cond2"), _, GetRequest) => { () => XmlResponse(<b> api q1 { id } cond2</b>) }
-    case Req(List("api", "q1", id, "cond3"), _, GetRequest) => { () => XmlResponse(<b> api q1 { id } cond3</b>) }
+    case Req(List("api", "q1", "reg", "cond1"), _, GetRequest) => { () => XmlResponse(<b> api q1 reg cond1</b>) }
+    case Req(List("api", "q1", id, "cond2"), _, GetRequest) => { () => XmlResponse(<b> api q1 { id } cond3</b>) }
 
   }
 
