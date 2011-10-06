@@ -30,17 +30,22 @@ object XmlRest extends XMLApiHelper with Logger {
     case Req(List("api", "q1", id), _, GetRequest) => { () => XmlResponse(<b> api q1 { id }</b>) }
     case Req(List("api", "q1", id, "cond1"), _, GetRequest) => { () => XmlResponse(<b> api q1 { id } cond1</b>) }
     case Req(List("api", "q1", id, "cond2"), _, GetRequest) => { () => XmlResponse(<b> api q1 { id } cond2</b>) }
+    case Req(List("api", "q1", id, "cond3"), _, GetRequest) => { () => XmlResponse(<b> api q1 { id } cond3</b>) }
 
   }
 
   def protection: LiftRules.HttpAuthProtectedResourcePF = {
-    case Req(List("api", "q1", id, something), _, GetRequest) => {
-      info("authentication match on: " + something)
-      something match {
-        case "cond2" => Empty
-        case _ => Full(AuthRole("authenticated"))
-      }
-    }
+			//    case Req(List("api", "q1", id, something), _, GetRequest) => {
+			//      info("authentication match on: " + something)
+			//      something match {
+			//        case "cond1" => Full(AuthRole("authenticated"))
+			//        //case "cond2" => Empty     // this will still trigger auth - just without role checking
+			//        case "cond3" => Full(AuthRole("authenticated"))
+			//        case _ => Empty
+			//      }
+			//    }
+    case Req(List("api", "q1", id, "cond1"), _, GetRequest) => Full(AuthRole("authenticated"))
+    case Req(List("api", "q1", id, "cond3"), _, GetRequest) => Full(AuthRole("authenticated"))
   }
 
 }
